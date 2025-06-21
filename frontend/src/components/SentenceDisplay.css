@@ -1,0 +1,51 @@
+.result-box {
+  background-color: #f9f9f9;
+  color: black;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 500px;
+  text-align: left;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  font-size: 1.3em;
+}
+
+.result-box p {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.error-message {
+  color: red;
+  font-weight: bold;
+}
+
+.loading-message {
+  color: gray;
+}
+
+.result-box p strong {
+  color: #4660f1; /* Make bold text a slightly darker color */
+  font-weight: bold; /* Ensure it's bold, though default is usually fine */
+}
+
+.hidden-punct{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0; 
+}
+
+.sent-entry {
+    margin-bottom: 1em;
+}
+
+.sent-entry > p {
+    margin-top: 4px;
+}
