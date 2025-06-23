@@ -4,7 +4,7 @@ import type { JapaneseApiResponse, SentenceData } from '../types/index';
 
 // Get the API base URL from environment variables
 // Ensure VITE_JAPANESE_API_URL is set in your .env.local file
-const API_BASE_URL: string = import.meta.env.VITE_JAPANESE_API_URL || 'http://localhost:8000/jp_sent';
+const API_BASE_URL: string = import.meta.env.VITE_JAPANESE_API_URL || 'http://localhost:8000';
 
 /**
  * Fetches an example Japanese sentence and its translation for a given word.
@@ -16,7 +16,7 @@ export async function fetchJapaneseSentence(word: string): Promise<SentenceData>
     throw new Error('Word cannot be empty.');
   }
 
-  const url = `${API_BASE_URL}?target_word=${encodeURIComponent(word)}`;
+  const url = `${API_BASE_URL}/sentences/get_example?target_word=${encodeURIComponent(word)}`;
 
   try {
     const response = await fetch(url);

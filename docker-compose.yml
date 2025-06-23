@@ -1,0 +1,34 @@
+version: '3.8' # Specify the Docker Compose file format version
+
+services:
+  frontend:
+    build:
+      context: ./frontend # Path to your frontend project directory (where its Dockerfile is)
+      dockerfile: Dockerfile # Name of the Dockerfile in that directory
+    container_name: japanese-llm-tools-frontend
+    ports:
+      - "8080:3000"
+    environment:
+      - VITE_JAPANESE_API_URL=http://backend:8000
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+  backend:
+    build:
+      context: ./backend 
+      dockerfile: Dockerfile
+    container_name: japanese-llm-tools-backend
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      - GEMENI_API_KEY=${GEMENI_API_KEY}
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge # Use the default bridge network driver
