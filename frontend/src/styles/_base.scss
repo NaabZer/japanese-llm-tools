@@ -14,20 +14,25 @@ html {
 }
 
 body {
+  @include mixins.apply-theme-colors(light);
   font-family: vars.$font-family-base;
   font-size: vars.$font-size-base;
   line-height: 1.5;
-  color: vars.$color-text;
-  background-color: vars.$color-background;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: color 0.4s ease-in, background-color 0.4s ease-in; // Ensure this line is present
 }
+
+body.dark-mode {
+  @include mixins.apply-theme-colors(dark);
+}
+
 
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   margin-bottom: vars.$spacing-md;
   font-weight: vars.$font-weight-bold;
-  color: vars.$color-dark; // Or $color-text
+  color: var(--color-dark); // Use CSS variable
 }
 
 h1 { 
@@ -60,7 +65,7 @@ p {
 }
 
 a {
-  color: vars.$color-primary;
+  color: var(--color-primary); // Use CSS variable
   text-decoration: none;
 
   &:hover {
@@ -69,20 +74,22 @@ a {
 }
 
 button {
-  @include mixins.button-style(vars.$color-primary); // Use the mixin
+  @include mixins.button-style(); // Use the mixin
 }
 
 input[type="text"] {
   padding: vars.$spacing-sm vars.$spacing-md;
-  border: 1px solid vars.$color-border;
+  border: 1px solid var(--color-border);
   border-radius: vars.$border-radius;
   font-size: vars.$font-size-base;
-  color: vars.$color-text;
-  background-color: vars.$color-light;
+  color: var(--color-text);
+  background-color: var(--color-light);
+
+  transition: color 0.4s ease-in, background-color 0.4s ease-in, border-color 0.4s ease-in; // Ensure this line is present
 
   &:focus {
     outline: none;
-    border-color: vars.$color-primary;
+    border-color: var(--color-primary);
     box-shadow: vars.$box-shadow-sm;
   }
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import { useJapaneseSentenceSearch } from './hooks/useJapaneseSentenceSearch'; // Import the custom hook
 import SearchForm from './components/SearchForm'; // Import the new SearchForm component
 import ResultDisplay from './components/ResultDisplay'; // Import the new ResultDisplay component
+import ThemeToggle from './components/ThemeToggle'; // Import the new ThemeToggle
 import './App.scss';
 
 function App() {
@@ -14,6 +15,8 @@ function App() {
   return (
     <div className="App">
       <h1>Japanese Sentence Generator</h1>
+      <ThemeToggle /> {/* Place the toggle here */}
+
 
       <div className='content-gutter'>
         <SearchForm 

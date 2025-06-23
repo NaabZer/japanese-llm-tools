@@ -1,0 +1,81 @@
+// src/components/ThemeToggle.module.scss
+@use '../styles/theme' as *;
+
+.toggleContainer {
+  position: absolute;
+  top: $spacing-md;
+  right: $spacing-md;
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm; // Gap between slider and icon
+  z-index: 1000;
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px; // Standard width for a toggle switch
+  height: 20px; // Standard height
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider (the track) */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--color-secondary); // Off state color
+  transition: 0.4s;
+  border-radius: 20px; // Fully rounded
+}
+
+/* The slider knob (the circle that moves) */
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px; // Size of the knob
+  width: 16px;
+  left: 2px; // Initial position
+  bottom: 2px;
+  background-color: var(--color-background); // Knob color
+  transition: transform 0.4s ease; // Animate knob movement
+  border-radius: 50%; // Circular knob
+}
+
+/* When checkbox is checked (dark mode) */
+input:checked + .slider {
+  background-color: var(--color-primary); // On state color
+}
+
+input:checked + .slider:before {
+  transform: translateX(20px); // Move knob to the right (40px width - 16px knob - 2*2px padding = 20px)
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--color-primary);
+}
+
+/* --- Styles for the Icon Label --- */
+.iconLabel {
+  display: flex; // Use flexbox to center the icon
+  align-items: center;
+  justify-content: center;
+  width: 24px; // Fixed width for the icon container
+  height: 24px; // Fixed height
+}
+
+.icon {
+  width: 100%;
+  height: 100%;
+  color: var(--color-text); // Icon color changes with theme
+}

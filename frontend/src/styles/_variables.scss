@@ -1,17 +1,38 @@
 // src/styles/_variables.scss
+@use "sass:color";
 
-// Colors
-$color-primary: #4660f1; // Blue
-$color-secondary: #6c757d; // Gray
-$color-success: #28a745; // Green
-$color-danger: #dc3545; // Red
-$color-warning: #ffc107; // Yellow
-$color-info: #17a2b8; // Cyan
-$color-light: #f8f9fa; // Light gray
-$color-dark: #343a40; // Dark gray
-$color-text: #212529; // Dark text
-$color-background: #ffffff; // White background
-$color-border: #dee2e6; // Light border
+$theme-colors: (
+  light: (
+    primary: #4660f1,
+    primary-hover: color.adjust(#4660f1, $lightness: -10%),
+    secondary: #6c757d,
+    secondary-hover: color.adjust(#6c757d, $lightness: -10%), 
+    success: #28a745,
+    danger: #dc3545,
+    warning: #ffc107,
+    info: #17a2b8,
+    light: #f8f9fa,
+    dark: #343a40,
+    text: #212529,
+    background: #ffffff,
+    border: #dee2e6,
+  ),
+  dark: (
+    primary: #4660f1, 
+    primary-hover: color.adjust(#4660f1, $lightness: -10%),
+    secondary: #adb5bd, // Lighter gray
+    secondary-hover: color.adjust(#adb5bd, $lightness: -10%),
+    success: #2ecc71,
+    danger: #e74c3c,
+    warning: #f1c40f,
+    info: #3498db,
+    light: #495057, // Darker light
+    dark: #e9ecef, // Lighter dark
+    text: #e9ecef, // Light text
+    background: #212529, // Dark background
+    border: #495057, // Darker border
+  )
+);
 
 // Typography
 $font-family-base: 'Noto Sans JP', sans-serif;

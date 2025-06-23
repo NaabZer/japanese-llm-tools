@@ -44,7 +44,37 @@
   }
 }
 
-@mixin button-style($bg-color, $text-color: white) {
+@mixin apply-theme-colors($theme-name) {
+  @if map-has-key(vars.$theme-colors, $theme-name) {
+    $current-theme: map-get(vars.$theme-colors, $theme-name);
+
+    // Apply general text and background colors
+    color: map-get($current-theme, text);
+    background-color: map-get($current-theme, background);
+
+    // Set CSS custom properties (variables) for easy access in components
+    // This is a powerful way to bridge SASS and runtime CSS
+    --color-primary: #{map-get($current-theme, primary)};
+    --color-primary-hover: #{map-get($current-theme, primary-hover)};
+    --color-secondary: #{map-get($current-theme, secondary)};
+    --color-secondary-hover: #{map-get($current-theme, secondary-hover)};
+    --color-success: #{map-get($current-theme, success)};
+    --color-danger: #{map-get($current-theme, danger)};
+    --color-warning: #{map-get($current-theme, warning)};
+    --color-info: #{map-get($current-theme, info)};
+    --color-light: #{map-get($current-theme, light)};
+    --color-dark: #{map-get($current-theme, dark)};
+    --color-text: #{map-get($current-theme, text)};
+    --color-background: #{map-get($current-theme, background)};
+    --color-border: #{map-get($current-theme, border)};
+
+    // You can also apply specific styles directly here
+    // For example, if you want box shadows to change:
+    // --box-shadow-sm: if($theme-name == dark, 0 0.125rem 0.25rem rgba(255, 255, 255, 0.1), 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075));
+  }
+}
+
+@mixin button-style($bg-color: var(--color-primary), $hover-color: var(--color-primary-hover), $text-color: white) {
   background-color: $bg-color;
   color: $text-color;
   padding: vars.$spacing-sm vars.$spacing-md;
@@ -55,7 +85,7 @@
   transition: background-color 0.2s ease-in-out;
 
   &:hover {
-    background-color: color.adjust($bg-color, $lightness: -10%); // SASS color function
+    background-color: $hover-color;
   }
 
   &:disabled {

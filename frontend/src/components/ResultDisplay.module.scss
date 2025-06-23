@@ -26,21 +26,11 @@
     )
   );
 
-  h3 {
-    @include theme.responsive-property(font-size, (
-      sm: theme.$font-size-h3 * 0.9,
-      md: theme.$font-size-h3,
-      lg: theme.$font-size-h3 * 1.1,
-      )
-    );
-  }
-
-
   p {
     margin-bottom: 0;
     line-height: 1.5;
     b {
-      color: theme.$color-primary;
+      color: var(--color-primary);
     }
   }
 }
