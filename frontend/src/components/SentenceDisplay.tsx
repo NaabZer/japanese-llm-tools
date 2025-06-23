@@ -1,5 +1,4 @@
 // src/components/SentenceDisplay.tsx
-import React from 'react';
 import type { SentenceData } from '../types';
 import ReactMarkdown from 'react-markdown'; // Import ReactMarkdown
 import remarkGfm from 'remark-gfm'; // Import remarkGfm (optional, but good practice)
