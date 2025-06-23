@@ -13,22 +13,35 @@ function SentenceDisplay({ sentenceData }: SentenceDisplayProps) {
   if (!sentenceData) {
     return null;
   }
+  const customComponents = {
+    // Map the 'strong' Markdown element to the 'b' HTML tag
+    strong: ({ node, ...props }: any) => <b {...props} />,
+    // You can add other mappings here if needed, e.g., for emphasis (italics)
+    // em: ({ node, ...props }: any) => <i {...props} />,
+  };
 
   return (
     <div className="result-box">
       <h3>Example Sentence:</h3>
-      <div class="sent-entry">
+      <div className="sent-entry">
         <strong>Japanese:</strong>{' '}
-        <div class='hidden-punct'>。</div>
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+        <div className='hidden-punct'>。</div>
+        <ReactMarkdown 
+          remarkPlugins={[remarkGfm]}
+          components={customComponents}
+        >
           {sentenceData.japanese}
         </ReactMarkdown>
       </div>
-      <div class="sent-entry">
+      <div className="sent-entry">
         <strong>English:</strong>{' '}
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
-            {sentenceData.english}
-          </ReactMarkdown>
+        <div className='hidden-punct'>。</div>
+        <ReactMarkdown 
+          remarkPlugins={[remarkGfm]}
+          components={customComponents}
+        >
+          {sentenceData.english}
+        </ReactMarkdown>
         </div>
       </div>
       );

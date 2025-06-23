@@ -26,7 +26,7 @@
   color: gray;
 }
 
-.result-box p strong {
+.result-box p b{
   color: #4660f1; /* Make bold text a slightly darker color */
   font-weight: bold; /* Ensure it's bold, though default is usually fine */
 }
