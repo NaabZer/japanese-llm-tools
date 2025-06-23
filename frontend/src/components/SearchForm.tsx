@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from './SearchForm.module.scss';
 
 interface SearchFormProps {
   onSearch: (word: string) => void; 
@@ -28,8 +29,9 @@ function SearchForm({
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={styles.searchForm}>
       <input
+        className={styles.formInput}
         type="text"
         placeholder={placeholder}
         value={word}

@@ -8,3 +8,23 @@
 .loadingMessage {
   color: gray;
 }
+
+.resultContainer {
+  background-color: #f9f9f9;
+  color: black;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+  width: 100%;
+  text-align: left;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  font-size: 1.3em;
+  p {
+    margin-bottom: 10px;
+    line-height: 1.5;
+    b {
+      color: vars.$color-primary;
+    }
+  }
+}

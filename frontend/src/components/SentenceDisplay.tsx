@@ -20,7 +20,7 @@ function SentenceDisplay({ sentenceData }: SentenceDisplayProps) {
   };
 
   return (
-    <div className={styles.resultBox}>
+    <div>
       <h3>Example Sentence:</h3>
       <div className={styles.sentEntry}>
         <strong>Japanese:</strong>{' '}

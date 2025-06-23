@@ -1,4 +1,8 @@
 /* src/App.css */
+
+@use './styles/theme' as theme;
+//@use './styles/mixins' as mix;
+
 #root {
     max-width: 1280px;
     margin: 0 auto;
@@ -13,13 +17,17 @@
     gap: 20px; /* Space between elements */
 }
 
-.App > form {
-    display: flex;
-}
+.content-gutter{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-input[type="text"] {
-    padding: 10px 15px;
-    width: 300px;
-    max-width: 90%;
-    margin-right: 15px;
+  width: 100%;
+  @include theme.breakpoint(lg) {
+    width: 60vw;
+  }
+  @include theme.breakpoint(xl) { 
+    min-width: 600px;
+    width: 30vw;
+  }
 }

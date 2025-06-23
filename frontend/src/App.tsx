@@ -15,27 +15,29 @@ function App() {
     <div className="App">
       <h1>Japanese Word Lookup</h1>
 
-      <SearchForm 
-        onSearch={handleSearch} 
-        isLoading={isLoading} 
-        placeholder='Enter a Japanese word (e.g., こんにちは)'
-        buttonText='Get Example Sentence'
-        buttonLoadingText='Generating...'
-      />
+      <div className='content-gutter'>
+        <SearchForm 
+          onSearch={handleSearch} 
+          isLoading={isLoading} 
+          placeholder='Enter a Japanese word (e.g., こんにちは)'
+          buttonText='Get Example Sentence'
+          buttonLoadingText='Generating...'
+        />
 
 
-      <ResultDisplay
-        sentenceData={sentenceData}
-        isLoading={isLoading}
-        error={error}
-      />
+        <ResultDisplay
+          sentenceData={sentenceData}
+          isLoading={isLoading}
+          error={error}
+        />
 
-      {/* Optional: Add a clear button if you want to reset the display */}
-      {(sentenceData || error) && (
-        <button onClick={clearResults} disabled={isLoading}>
-          Clear Results
-        </button>
-      )}
+        {/* Optional: Add a clear button if you want to reset the display */}
+        {(sentenceData || error) && (
+          <button onClick={clearResults} disabled={isLoading}>
+            Clear Results
+          </button>
+        )}
+      </div>
     </div>
   );
 }
