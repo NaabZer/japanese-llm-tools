@@ -1,0 +1,41 @@
+// src/styles/_variables.scss
+
+// Colors
+$color-primary: #4660f1; // Blue
+$color-secondary: #6c757d; // Gray
+$color-success: #28a745; // Green
+$color-danger: #dc3545; // Red
+$color-warning: #ffc107; // Yellow
+$color-info: #17a2b8; // Cyan
+$color-light: #f8f9fa; // Light gray
+$color-dark: #343a40; // Dark gray
+$color-text: #212529; // Dark text
+$color-background: #ffffff; // White background
+$color-border: #dee2e6; // Light border
+
+// Typography
+$font-family-base: 'Noto Sans JP', sans-serif;
+$font-size-base: 1rem; // 16px
+$font-size-sm: 0.875rem; // 14px
+$font-size-lg: 1.25rem; // 20px
+$font-size-h1: 2.5rem;
+$font-size-h2: 2rem;
+$font-size-h3: 1.75rem;
+
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+
+// Spacing (using a modular scale)
+$spacing-unit: 0.5rem; // 8px
+$spacing-xs: $spacing-unit * 0.5; // 4px
+$spacing-sm: $spacing-unit; // 8px
+$spacing-md: $spacing-unit * 2; // 16px
+$spacing-lg: $spacing-unit * 3; // 24px
+$spacing-xl: $spacing-unit * 4; // 32px
+
+// Border Radius
+$border-radius: 0.25rem; // 4px
+
+// Box Shadow
+$box-shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+$box-shadow-md: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);

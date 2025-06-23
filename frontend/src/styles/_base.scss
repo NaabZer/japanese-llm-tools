@@ -1,0 +1,73 @@
+// src/styles/_base.scss
+@use 'variables' as vars;
+@use 'mixins' as mixins;
+
+// Basic CSS Reset (optional, but good for consistency)
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px; // Base for rem units
+}
+
+body {
+  font-family: vars.$font-family-base;
+  font-size: vars.$font-size-base;
+  line-height: 1.5;
+  color: vars.$color-text;
+  background-color: vars.$color-background;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: vars.$spacing-md;
+  font-weight: vars.$font-weight-bold;
+  color: vars.$color-dark; // Or $color-text
+}
+
+h1 { font-size: vars.$font-size-h1; }
+h2 { font-size: vars.$font-size-h2; }
+h3 { font-size: vars.$font-size-h3; }
+
+p {
+  margin-bottom: vars.$spacing-sm;
+}
+
+a {
+  color: vars.$color-primary;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+button {
+  @include mixins.button-style(vars.$color-primary); // Use the mixin
+}
+
+input[type="text"] {
+  padding: vars.$spacing-sm vars.$spacing-md;
+  border: 1px solid vars.$color-border;
+  border-radius: vars.$border-radius;
+  font-size: vars.$font-size-base;
+  width: 300px;
+  max-width: 90%;
+  color: vars.$color-text;
+  background-color: vars.$color-light;
+
+  &:focus {
+    outline: none;
+    border-color: vars.$color-primary;
+    box-shadow: vars.$box-shadow-sm;
+  }
+}
+
+strong {
+  font-weight: vars.$font-weight-bold; // Ensure bold works with your chosen font
+}

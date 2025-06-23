@@ -1,6 +1,7 @@
 import React from 'react';
 import type { SentenceData } from '../types';
 import SentenceDisplay from './SentenceDisplay'; // Re-use your existing SentenceDisplay
+import styles from './ResultDisplay.module.scss';
 
 interface ResultDisplayProps {
   sentenceData: SentenceData | null;
@@ -10,11 +11,11 @@ interface ResultDisplayProps {
 
 function ResultDisplay({ sentenceData, isLoading, error }: ResultDisplayProps) {
   if (isLoading) {
-    return <p className="loading-message">Loading example sentence...</p>;
+    return <p className={styles.loadingMessage}>Loading example sentence...</p>;
   }
 
   if (error) {
-    return <p className="error-message">{error}</p>;
+    return <p className={styles.errorMessage}>{error}</p>;
   }
 
   if (sentenceData) {

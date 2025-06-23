@@ -2,7 +2,7 @@ import React from 'react';
 import { useJapaneseSentenceSearch } from './hooks/useJapaneseSentenceSearch'; // Import the custom hook
 import SearchForm from './components/SearchForm'; // Import the new SearchForm component
 import ResultDisplay from './components/ResultDisplay'; // Import the new ResultDisplay component
-import './App.css';
+import './App.scss';
 
 function App() {
   const { sentenceData, isLoading, error, searchSentence, clearResults } = useJapaneseSentenceSearch();

@@ -1,4 +1,6 @@
-.result-box {
+@use '../styles/variables.scss' as vars;
+
+.resultBox {
   background-color: #f9f9f9;
   color: black;
   border: 1px solid #eee;
@@ -10,28 +12,16 @@
   text-align: left;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   font-size: 1.3em;
+  p {
+    margin-bottom: 10px;
+    line-height: 1.5;
+    b {
+      color: vars.$color-primary;
+    }
+  }
 }
 
-.result-box p {
-  margin-bottom: 10px;
-  line-height: 1.5;
-}
-
-.error-message {
-  color: red;
-  font-weight: bold;
-}
-
-.loading-message {
-  color: gray;
-}
-
-.result-box p b{
-  color: #4660f1; /* Make bold text a slightly darker color */
-  font-weight: bold; /* Ensure it's bold, though default is usually fine */
-}
-
-.hidden-punct{
+.hiddenPunct{
     position: absolute;
     width: 1px;
     height: 1px;
@@ -42,10 +32,9 @@
     border: 0; 
 }
 
-.sent-entry {
+.sentEntry {
     margin-bottom: 1em;
-}
-
-.sent-entry > p {
-    margin-top: 4px;
+    p {
+      margin-top: 4px;
+    }
 }

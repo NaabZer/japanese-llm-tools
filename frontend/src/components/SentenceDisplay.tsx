@@ -2,7 +2,7 @@
 import type { SentenceData } from '../types';
 import ReactMarkdown from 'react-markdown'; // Import ReactMarkdown
 import remarkGfm from 'remark-gfm'; // Import remarkGfm (optional, but good practice)
-import './SentenceDisplay.css';
+import styles from './SentenceDisplay.module.scss';
 
 interface SentenceDisplayProps {
   sentenceData: SentenceData | null;
@@ -20,11 +20,11 @@ function SentenceDisplay({ sentenceData }: SentenceDisplayProps) {
   };
 
   return (
-    <div className="result-box">
+    <div className={styles.resultBox}>
       <h3>Example Sentence:</h3>
-      <div className="sent-entry">
+      <div className={styles.sentEntry}>
         <strong>Japanese:</strong>{' '}
-        <div className='hidden-punct'>。</div>
+        <div className={styles.hiddenPunct}>。</div>
         <ReactMarkdown 
           remarkPlugins={[remarkGfm]}
           components={customComponents}
@@ -32,9 +32,8 @@ function SentenceDisplay({ sentenceData }: SentenceDisplayProps) {
           {sentenceData.japanese}
         </ReactMarkdown>
       </div>
-      <div className="sent-entry">
+      <div className={styles.sentEntry}>
         <strong>English:</strong>{' '}
-        <div className='hidden-punct'>。</div>
         <ReactMarkdown 
           remarkPlugins={[remarkGfm]}
           components={customComponents}
