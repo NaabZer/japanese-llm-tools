@@ -1,4 +1,4 @@
-@use '../styles/variables.scss' as vars;
+@use '../styles/theme' as theme;
 
 .hiddenPunct{
     position: absolute;
@@ -12,8 +12,10 @@
 }
 
 .sentEntry {
-    margin-bottom: 1em;
-    p {
-      margin-top: 4px;
-    }
+  &:not(:last-child){
+    margin-bottom: theme.$spacing-lg
+  }
+  p {
+    margin-top: 4px;
+  }
 }

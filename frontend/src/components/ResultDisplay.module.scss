@@ -1,4 +1,4 @@
-@use '../styles/variables.scss' as vars;
+@use '../styles/theme' as theme;
 
 .errorMessage {
   color: red;
@@ -19,12 +19,28 @@
   width: 100%;
   text-align: left;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  font-size: 1.3em;
+  @include theme.responsive-property(font-size, (
+    sm: 1.3em * 0.9,
+    md: 1.3em,
+    lg: 1.3em * 1.1
+    )
+  );
+
+  h3 {
+    @include theme.responsive-property(font-size, (
+      sm: theme.$font-size-h3 * 0.9,
+      md: theme.$font-size-h3,
+      lg: theme.$font-size-h3 * 1.1,
+      )
+    );
+  }
+
+
   p {
-    margin-bottom: 10px;
+    margin-bottom: 0;
     line-height: 1.5;
     b {
-      color: vars.$color-primary;
+      color: theme.$color-primary;
     }
   }
 }

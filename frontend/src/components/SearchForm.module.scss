@@ -4,20 +4,19 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  gap: theme.$spacing-xs;
 
   flex-direction: column;
   @include theme.breakpoint(sm) {
     flex-direction: row;
-    gap: theme.$spacing-sm;
   }
-  @include theme.breakpoint(md) {
-    gap: theme.$spacing-md;
-  }
-  @include theme.breakpoint(lg) {
-    flex-direction: row;
-    gap: theme.$spacing-lg;
-  }
+
+  @include theme.responsive-property(gap, (
+    sm: theme.$spacing-sm,
+    md: theme.$spacing-md,
+    lg: theme.$spacing-lg,
+    xl: theme.$spacing-xl
+    )
+  );
 }
 
 .formInput {

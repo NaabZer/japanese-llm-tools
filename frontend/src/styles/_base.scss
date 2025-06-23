@@ -30,9 +30,30 @@ h1, h2, h3, h4, h5, h6 {
   color: vars.$color-dark; // Or $color-text
 }
 
-h1 { font-size: vars.$font-size-h1; }
-h2 { font-size: vars.$font-size-h2; }
-h3 { font-size: vars.$font-size-h3; }
+h1 { 
+  @include mixins.responsive-property(font-size, (
+    sm: vars.$font-size-h1 * 0.9,
+    md: vars.$font-size-h1,
+    lg: vars.$font-size-h1 * 1.1,
+    )
+  );
+}
+h2 { 
+  @include mixins.responsive-property(font-size, (
+    sm: vars.$font-size-h2 * 0.9,
+    md: vars.$font-size-h2,
+    lg: vars.$font-size-h2 * 1.1,
+    )
+  );
+}
+h3 { 
+  @include mixins.responsive-property(font-size, (
+    sm: vars.$font-size-h3 * 0.9,
+    md: vars.$font-size-h3,
+    lg: vars.$font-size-h3 * 1.1,
+    )
+  );
+}
 
 p {
   margin-bottom: vars.$spacing-sm;

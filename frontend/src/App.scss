@@ -22,12 +22,14 @@
   flex-direction: column;
   align-items: center;
 
-  width: 100%;
-  @include theme.breakpoint(lg) {
-    width: 60vw;
-  }
+  @include theme.responsive-property(width, (
+    sm: 100%,
+    md: 80vw,
+    lg: 60vw,
+    xl: 30vw,
+    )
+  );
   @include theme.breakpoint(xl) { 
     min-width: 600px;
-    width: 30vw;
   }
 }

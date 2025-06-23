@@ -13,7 +13,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Japanese Word Lookup</h1>
+      <h1>Japanese Sentence Generator</h1>
 
       <div className='content-gutter'>
         <SearchForm 

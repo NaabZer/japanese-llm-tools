@@ -18,7 +18,32 @@
   }
 }
 
-// Basic button styling mixin
+@mixin responsive-property($property, $values-map) {
+  $default-value: null;
+  $first-key: null;
+
+  // Extract the default (first) value for mobile-first approach
+  @each $key, $value in $values-map {
+    @if $default-value == null {
+      $default-value: $value;
+      $first-key: $key;
+    }
+  }
+
+  // Apply the default value outside any media query
+  #{$property}: $default-value;
+
+  // Iterate through the map and apply values at each breakpoint
+  @each $key, $value in $values-map {
+    // Skip the first key, as its value is already applied as default
+    @if $key != $first-key {
+      @include breakpoint($key) {
+        #{$property}: $value;
+      }
+    }
+  }
+}
+
 @mixin button-style($bg-color, $text-color: white) {
   background-color: $bg-color;
   color: $text-color;
