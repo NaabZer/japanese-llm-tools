@@ -2,7 +2,7 @@ import sys
 from pydantic_ai import Agent
 from pydantic_ai.models.gemini import GeminiModel
 from pydantic_ai.providers.google_gla import GoogleGLAProvider
-from app.agent.config import settings
+from app.config import settings
 from typing import Annotated
 from pydantic import BaseModel, Field
 
