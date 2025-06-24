@@ -1,0 +1,87 @@
+// src/components/HoverRadialFill.module.scss
+@use '../styles/theme' as *;
+
+.radialFillContainer {
+  position: relative; // Essential for positioning children
+  overflow: hidden; // Hide the gradient outside the element
+  cursor: pointer;
+
+  background-color: var(--color-background);
+  //color: var(--color-text);
+
+  background-image: radial-gradient(
+    circle at var(--mouse-x) var(--mouse-y),
+    var(--fill-color) var(--gradient-size),
+    transparent var(--gradient-size)
+  );
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  transition: color 0.4s ease-in, background-color 0.4s ease-in; // Ensure this line is present
+
+  // --- REMOVE THIS BLOCK ---
+  // > * {
+  //   position: relative;
+  //   z-index: 1;
+  // }
+  // --- END REMOVAL ---
+}
+
+.contentDefault,
+.contentFilled {
+  // --- CRITICAL CHANGE: Remove position: absolute from .contentDefault ---
+  // .contentDefault will now be in normal flow and dictate the container's size.
+  // .contentFilled will remain absolutely positioned over it.
+  // position: absolute; // REMOVE THIS FROM .contentDefault
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  // Ensure padding is applied to the container, not these layers,
+  // or apply it consistently if needed.
+  // padding: inherit; // This might cause issues if parent has no padding.
+  // Better to apply padding directly to .radialFillContainer or its children.
+}
+
+.contentDefault {
+  //color: var(--color-text);
+  z-index: 1; // Ensure it's below the filled content
+  // No position: absolute here
+}
+
+.contentFilled {
+  position: absolute; // Keep this one absolute
+  color: var(--filled-text-color);
+  z-index: 2;
+
+  mix-blend-mode: lighten; // Or 'lighten', 'screen', 'overlay'
+
+  -webkit-mask-image: radial-gradient(
+    circle at var(--mouse-x) var(--mouse-y),
+    white var(--gradient-size),
+    transparent var(--gradient-size)
+  );
+  mask-image: radial-gradient(
+    circle at var(--mouse-x) var(--mouse-y),
+    white var(--gradient-size),
+    transparent var(--gradient-size)
+  );
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center center;
+  mask-position: center center;
+}
+
+// Ensure direct text elements within the content also inherit colors
+.contentDefault *,
+.contentFilled * {
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+// --- IMPORTANT: Apply padding to the .radialFillContainer itself ---
+// This ensures the container has space and the content is not squished.
+.radialFillContainer {
+  //padding: $spacing-md; // Example padding, adjust as needed
+  // ... other styles ...
+}

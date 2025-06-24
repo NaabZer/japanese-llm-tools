@@ -4,7 +4,7 @@ import SearchForm from './components/SearchForm';
 import ResultDisplay from './components/ResultDisplay';
 import ThemeToggle from './components/ThemeToggle';
 import LanguageSelector from './components/LanguageSelector';
-import AppTitle from './components/AppTitle'; // Import the new AppTitle component
+import AppTitle from './components/AppTitle';
 import { LanguageProvider, useLanguage } from './context/LanguageContext';
 import './App.scss';
 
