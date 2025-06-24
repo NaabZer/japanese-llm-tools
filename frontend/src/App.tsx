@@ -3,6 +3,8 @@ import { useJapaneseSentenceSearch } from './hooks/useJapaneseSentenceSearch'; /
 import SearchForm from './components/SearchForm'; // Import the new SearchForm component
 import ResultDisplay from './components/ResultDisplay'; // Import the new ResultDisplay component
 import ThemeToggle from './components/ThemeToggle'; // Import the new ThemeToggle
+import TestHeightAnimation from './components/TestHeightAnimation'; // Import the new ThemeToggle
+import { motion } from 'motion/react';
 import './App.scss';
 
 function App() {
@@ -14,7 +16,13 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Japanese Sentence Generator</h1>
+      <motion.h1
+        initial={{opacity: 0, y: -50 }}
+        animate={{opacity: 1, y: 0}}
+        transition={{ type: "spring" }}
+      >
+        Japanese Sentence Generator
+      </motion.h1>
       <ThemeToggle /> {/* Place the toggle here */}
 
 
