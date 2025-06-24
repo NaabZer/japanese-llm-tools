@@ -5,7 +5,9 @@
 
 // Media query mixin for responsiveness
 @mixin breakpoint($point) {
-  @if $point == sm {
+  @if $point == xs {
+    @media (min-width: 420px) { @content; }
+  } @else if $point == sm {
     @media (min-width: 576px) { @content; }
   } @else if $point == md {
     @media (min-width: 768px) { @content; }
