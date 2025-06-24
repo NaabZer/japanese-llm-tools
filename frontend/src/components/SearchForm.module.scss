@@ -21,4 +21,7 @@
 
 .formInput {
   flex-grow: 1;
+  &::placeholder{
+    color: var(--color-secondary);
+  }
 }

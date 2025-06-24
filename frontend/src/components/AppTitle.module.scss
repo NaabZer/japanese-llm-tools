@@ -4,6 +4,8 @@
   margin-bottom: $spacing-lg; // Example using a variable
   color: var(--color-dark); // Use CSS variable for title color
   text-align: center; // Ensure it's centered
+  display: flex;
+  gap: $spacing-md;
 }
 
 .languageToggleText {
