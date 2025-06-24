@@ -12,8 +12,8 @@ model = GeminiModel(
 )
 
 system_prompt = (
-        'You are a language expert, focused on japanese and english. '
-        'Support the user with queries about japanese '
+        'You are a language expert, focused on swedish and english. '
+        'Support the user with queries about swedish '
         'and english translation tasks'
         )
 agent = Agent(
@@ -24,18 +24,19 @@ agent = Agent(
 
 
 def generate_word_sentence(word: str) -> SentenceReturnModel:
-    prompt = ('You will be given a word in japanese, for this word, '
-              'generate an example sentence in japanese containing the word. '
-              'The other words in the sentence should be at maximum N3 level, '
+    prompt = ('You will be given a word in swedish, for this word, '
+              'generate an example sentence in swedish containing the word. '
+              'The other words in the sentence should be at maximum A2 level, '
               'to make sure that all other words in the sentence are known. '
               'Put the sentence in a context that is more than trivial, '
-              'for example, for the word ペン, do not return the sentence '
-              'これはペンです。 Return something more contextual where the '
+              'for example, for the word penna, do not return the sentence '
+              '"Detta är en penna." '
+              'Return something more contextual where the '
               'meaning of the word can truly be seen, '
-              'for example, for the word ぺん, return something like '
-              '彼はペンを使って、手紙を書いた。'
+              'for example, for the word "penna", return something like '
+              'Han skriver en bok med sin penna.'
               'Only generate one sentence, meaning that there should exist '
-              'only have one 。character, at the end of the sentence. '
+              'only have one "." character, at the end of the sentence. '
               'Also give a translation of the constructed sentence. '
               'In both the generated sentence, and the translated sentence, '
               'make sure to bold the target word'
