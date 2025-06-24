@@ -1,28 +1,27 @@
-import React from 'react';
-import { useJapaneseSentenceSearch } from './hooks/useJapaneseSentenceSearch'; // Import the custom hook
-import SearchForm from './components/SearchForm'; // Import the new SearchForm component
-import ResultDisplay from './components/ResultDisplay'; // Import the new ResultDisplay component
-import ThemeToggle from './components/ThemeToggle'; // Import the new ThemeToggle
-import TestHeightAnimation from './components/TestHeightAnimation'; // Import the new ThemeToggle
-import { motion } from 'motion/react';
+import React, {useState} from 'react';
+import { useExampleSentenceSearch } from './hooks/useExampleSentenceSearch';
+import SearchForm from './components/SearchForm';
+import ResultDisplay from './components/ResultDisplay';
+import ThemeToggle from './components/ThemeToggle';
+import LanguageSelector from './components/LanguageSelector';
+import AppTitle from './components/AppTitle'; // Import the new AppTitle component
+import { LanguageProvider, useLanguage } from './context/LanguageContext';
 import './App.scss';
 
-function App() {
-  const { sentenceData, isLoading, error, searchSentence, clearResults } = useJapaneseSentenceSearch();
+function AppContent() {
+  const { targetLanguage } = useLanguage();
+  const [showLanguageSelector, setShowLanguageSelector] = useState(false);
+
+  const { sentenceData, isLoading, error, searchSentence, clearResults } = useExampleSentenceSearch();
 
   const handleSearch = (word: string) => {
-    searchSentence(word);
+    searchSentence(word, targetLanguage);
   };
 
   return (
     <div className="App">
-      <motion.h1
-        initial={{opacity: 0, y: -50 }}
-        animate={{opacity: 1, y: 0}}
-        transition={{ type: "spring" }}
-      >
-        Japanese Sentence Generator
-      </motion.h1>
+      {/* Make the "Japanese" word clickable */}
+      <AppTitle onLanguageToggleClick={() => setShowLanguageSelector(true)} />
       <ThemeToggle /> {/* Place the toggle here */}
 
 
@@ -42,14 +41,20 @@ function App() {
           error={error}
         />
 
-        {/* Optional: Add a clear button if you want to reset the display */}
-        {(sentenceData || error) && (
-          <button onClick={clearResults} disabled={isLoading}>
-            Clear Results
-          </button>
-        )}
+      {showLanguageSelector && (
+        <LanguageSelector onClose={() => setShowLanguageSelector(false)} />
+      )}
       </div>
     </div>
+  );
+}
+//
+// Wrapper component to provide the LanguageContext
+function App() {
+  return (
+    <LanguageProvider>
+      <AppContent />
+    </LanguageProvider>
   );
 }
 

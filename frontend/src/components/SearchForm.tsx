@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './SearchForm.module.scss';
+import { motion } from 'motion/react';
 
 interface SearchFormProps {
   onSearch: (word: string) => void; 
@@ -29,7 +30,13 @@ function SearchForm({
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.searchForm}>
+    <motion.form
+      initial={{opacity: 0, y: -50 }}
+      animate={{opacity: 1, y: 0}}
+      transition={{ type: "spring" , bounce: 0.3, delay: 0.05}}
+      onSubmit={handleSubmit}
+      className={styles.searchForm}
+    >
       <input
         className={styles.formInput}
         type="text"
@@ -41,7 +48,7 @@ function SearchForm({
       <button type="submit" disabled={isLoading}>
         {isLoading ? buttonLoadingText : buttonText}
       </button>
-    </form>
+    </motion.form>
   );
 }
 

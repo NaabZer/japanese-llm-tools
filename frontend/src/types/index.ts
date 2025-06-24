@@ -1,13 +1,11 @@
-// src/types/index.ts
+export type Language = 'japanese' | 'swedish';
 
-// This interface defines the structure of the data we want to use in our components
-// after processing the API response.
 export interface SentenceData {
-  japanese: string;
-  english: string;
+  target: string;
+  translated: string;
 }
 
-export interface JapaneseApiResponse {
+export interface SentenceApiResponse {
   target_word: string;
   target_sentence: string;
   translated_sentence: string;

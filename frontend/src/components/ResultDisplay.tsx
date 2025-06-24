@@ -60,8 +60,11 @@ function ResultDisplay(props: ResultDisplayProps) { // Pass all props to the com
   };
 
   return (
-    <div
+    <motion.div
       className={styles.resultContainer}
+      initial={{opacity: 0, y: -50 }}
+      animate={{opacity: 1, y: 0}}
+      transition={{ type: "spring" , bounce: 0.3, delay: 0.1}}
     >
       <motion.div 
         ref={myElementRef}
@@ -71,12 +74,12 @@ function ResultDisplay(props: ResultDisplayProps) { // Pass all props to the com
         initial="initial" // Apply initial state from variants
         animate="animate" // Apply animate state from variants
         variants={contentVariants} // Use the variants defined above
-        transition={{ type: "spring", stiffness: 400, damping: 30 }} // Transition for layout and opacity
+        transition={{ type: "spring", bounce: 0.3}} // Transition for layout and opacity
         onAnimationComplete={setCurrentHeight}
       >
         {renderContent(props)} {/* Call the helper function with all props */}
       </motion.div>
-    </div>
+    </motion.div>
   );
 }
 

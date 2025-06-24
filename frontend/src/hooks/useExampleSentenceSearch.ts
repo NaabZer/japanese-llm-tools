@@ -1,29 +1,29 @@
 import { useState, useCallback } from 'react';
-import { fetchJapaneseSentence } from '../api/japaneseSentenceApi';
-import type { SentenceData } from '../types'; 
+import { fetchExampleSentence } from '../api/exampleSentenceApi';
+import type { SentenceData, Language } from '../types'; 
 
-interface UseJapaneseSentenceSearchReturn {
+interface UseExampleSentenceSearchReturn {
   sentenceData: SentenceData | null;
   isLoading: boolean;
   error: string | null;
-  searchSentence: (word: string) => Promise<void>; // Function to trigger the search
+    searchSentence: (word: string, targetLanguage: Language) => Promise<void>; // Function to trigger the search
   clearResults: () => void; // Function to clear results and errors
 }
 
-export function useJapaneseSentenceSearch(): UseJapaneseSentenceSearchReturn {
+export function useExampleSentenceSearch(): UseExampleSentenceSearchReturn {
   const [sentenceData, setSentenceData] = useState<SentenceData | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
   // useCallback memoizes the function, preventing unnecessary re-renders
   // and ensuring it's stable across component renders.
-  const searchSentence = useCallback(async (word: string) => {
+  const searchSentence = useCallback(async (word: string, targetLanguage: Language) => {
     setIsLoading(true);
     setError(null);
     setSentenceData(null); // Clear previous data before new search
 
     try {
-      const result = await fetchJapaneseSentence(word);
+      const result = await fetchExampleSentence(word, targetLanguage);
       setSentenceData(result);
     } catch (err: any) {
       setError(err.message || 'An unexpected error occurred during search.');

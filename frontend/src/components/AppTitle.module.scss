@@ -1,0 +1,17 @@
+@use '../styles/theme' as *; // Use your theme variables and mixins
+
+.appTitle {
+  margin-bottom: $spacing-lg; // Example using a variable
+  color: var(--color-dark); // Use CSS variable for title color
+  text-align: center; // Ensure it's centered
+}
+
+.languageToggleText {
+  cursor: pointer;
+  color: var(--color-primary); // Use CSS variable for primary color
+  transition: color 0.2s ease; // Smooth color transition
+
+  &:hover {
+    color: var(--color-primary-hover); // Use CSS variable for hover color
+  }
+}
