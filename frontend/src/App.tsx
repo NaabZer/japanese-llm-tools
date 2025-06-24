@@ -18,6 +18,8 @@ function AppContent() {
     searchSentence(word, targetLanguage);
   };
 
+  const placeholderText = targetLanguage === "japanese"? 'Enter a Japanese word (e.g., こんにちは)' : 'Enter a Swedish word (e.g., Hej)';
+
   return (
     <div className="App">
       {/* Make the "Japanese" word clickable */}
@@ -29,7 +31,7 @@ function AppContent() {
         <SearchForm 
           onSearch={handleSearch} 
           isLoading={isLoading} 
-          placeholder='Enter a Japanese word (e.g., こんにちは)'
+          placeholder={placeholderText}
           buttonText='Get Example Sentence'
           buttonLoadingText='Generating...'
         />
@@ -42,7 +44,10 @@ function AppContent() {
         />
 
       {showLanguageSelector && (
-        <LanguageSelector onClose={() => setShowLanguageSelector(false)} />
+        <LanguageSelector 
+          onClose={() => setShowLanguageSelector(false)} 
+          onClick={() => clearResults()}
+        />
       )}
       </div>
     </div>

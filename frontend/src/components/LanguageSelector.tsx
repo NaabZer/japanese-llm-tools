@@ -6,6 +6,7 @@ import styles from './LanguageSelector.module.scss'; // Create this SCSS module
 
 interface LanguageSelectorProps {
   onClose: () => void; // Callback to close the popup
+  onClick: () => void;
 }
 
 const availableLanguages: { id: Language; name: string }[] = [
@@ -14,11 +15,12 @@ const availableLanguages: { id: Language; name: string }[] = [
   // Add more languages here as needed
 ];
 
-function LanguageSelector({ onClose }: LanguageSelectorProps) {
+function LanguageSelector({ onClose, onClick }: LanguageSelectorProps) {
   const { targetLanguage, setTargetLanguage } = useLanguage();
 
   const handleLanguageChange = (lang: Language) => {
     setTargetLanguage(lang);
+    onClick();
     onClose(); // Close the popup after selection
   };
 

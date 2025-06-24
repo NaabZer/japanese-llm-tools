@@ -18,6 +18,7 @@ function AppTitle({ onLanguageToggleClick }: AppTitleProps) {
       initial={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ type: "spring", bounce: 0.3 }}
+      layout
     >
       <span
         onClick={onLanguageToggleClick} // Use the passed-in callback
