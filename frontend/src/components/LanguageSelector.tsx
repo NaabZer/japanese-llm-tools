@@ -54,7 +54,7 @@ function LanguageSelector({ onClose, onSelect, onCompletelyClosed, absoluteOrigi
         clipPath: `rect(${rTop}px ${rRight}px ${rBot}px ${rLeft}px round 16px)`,
       },
       visible: {
-        clipPath: 'rect(0px 100% 100% 0px)',
+        clipPath: 'rect(-5% 105% 105% -5% round 5%)',
         transition: {
           ease: [.23,1.16,.58,.47],
           duration: 0.4,
