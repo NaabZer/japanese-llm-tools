@@ -68,15 +68,17 @@
 }
 
 .closeButton {
+  @include button-style(var(--color-primary), var(--color-primary));
   position: absolute;
   top: $spacing-sm;
   right: $spacing-sm;
   background: none;
   border: none;
-  font-size: $font-size-lg;
+  font-size: $font-size-lg * 2;
   cursor: pointer;
   color: var(--color-text);
   padding: $spacing-xs;
+  transition: color 0.1s ease-in, background-color 0.1s ease-in; // Ensure this line is present
 
   &:hover {
     color: var(--color-danger);

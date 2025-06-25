@@ -1,7 +1,7 @@
 // src/components/LanguageSelector.tsx
 import React, {useRef} from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { motion } from 'motion/react';
+import { motion, cubicBezier } from 'motion/react';
 import type { Language } from '../types';
 import styles from './LanguageSelector.module.scss'; // Create this SCSS module
 
@@ -52,8 +52,8 @@ function LanguageSelector({ onClose, onSelect, onCompletelyClosed, absoluteOrigi
     visible: {
       clipPath: 'rect(0px 100% 100% 0px)',
       transition: {
-        type: "ease-in",
-        duration: 0.3,
+        ease: [.23,1.16,.58,.47],
+        duration: 0.4,
         staggerChildren: 0.05,
         when: 'beforeChildren'
       },
@@ -61,11 +61,11 @@ function LanguageSelector({ onClose, onSelect, onCompletelyClosed, absoluteOrigi
     exit: {
       clipPath: `rect(${rTop}px ${rRight}px ${rBot}px ${rLeft}px round 16px)`,
       transition: {
-        type: "ease-out",
-        duration: 0.3,
+        ease: [0.42, 0.53, 0.77, -0.16],
+        duration: 0.4,
         staggerChildren: 0.05,
         staggerDirection: -1,
-        when: 'afterChildren',
+        delay: 0.1
       },
     },
   };
@@ -79,14 +79,16 @@ function LanguageSelector({ onClose, onSelect, onCompletelyClosed, absoluteOrigi
       y: 0,
       opacity: 1,
       transition: {
-        duration: 0.2,
+        type: 'spring',
+        duration: 0.4,
       },
     },
     exit: {
       opacity: 0,
       y: -50,
       transition: {
-        duration: 0.2,
+        type: 'spring',
+        duration: 0.4,
       },
     },
   };
@@ -134,9 +136,13 @@ function LanguageSelector({ onClose, onSelect, onCompletelyClosed, absoluteOrigi
               </h2>
             </motion.div>
           ))}
-          <button className={styles.closeButton} onClick={handleClose}>
+          <motion.button 
+            variants={popupVariantsInner}
+            className={styles.closeButton}
+            onClick={handleClose}
+          >
             &times;
-          </button>
+          </motion.button>
         </motion.div>
       </motion.div>
     </motion.div>
