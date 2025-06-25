@@ -1,19 +1,26 @@
 // src/components/AppTitle.tsx
-import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion'; // Import motion for animations
-import { useLanguage } from '../context/LanguageContext'; // Import useLanguage hook
-import styles from './AppTitle.module.scss'; // Create this SCSS module
+import React, { useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
+import styles from './AppTitle.module.scss';
 import HoverRadialFill from '../components/HoverRadialFill';
 
 // Define props for the AppTitle component
 interface AppTitleProps {
-  onLanguageToggleClick: () => void; // Callback for when the language text is clicked
+  onLanguageToggleClick: (x: number, y: number, w: number, h: number) => void; // Pass click coordinates
+  isLanguageSelectorOpen: boolean; // New prop to indicate if modal is open
 }
 
-function AppTitle({ onLanguageToggleClick }: AppTitleProps) {
+function AppTitle({ onLanguageToggleClick, isLanguageSelectorOpen }: AppTitleProps) {
+  const titleLangRef = useRef<HTMLHeadingElement>(null); // Ref to the popup div
   const { targetLanguage } = useLanguage();
   const targetLangStr = targetLanguage === 'japanese' ? 'Japanese' : 'Swedish';
   const key = "AppTitle"+targetLangStr;
+
+  const handleLanguageToggleAreaClick = () => {
+    const {x, y, width, height} = titleLangRef.current.getBoundingClientRect();
+    onLanguageToggleClick(x, y, width, height);
+  };
 
   return (
     <motion.div
@@ -25,21 +32,21 @@ function AppTitle({ onLanguageToggleClick }: AppTitleProps) {
     >
       <HoverRadialFill 
         className={styles.languageToggleTextWrapper}
+        onClick={handleLanguageToggleAreaClick} // Pass the click handler
+        isActive={isLanguageSelectorOpen} // Tell HoverRadialFill if modal is open
         fillColor="var(--color-primary)"
-        filledTextColor="white"
+        filledTextColor="#fff"
+        activeFillColor="var(--color-primary)"
         duration={0.4}
       >
         <AnimatePresence mode='wait'>
-          <motion.h1
+          <h1
             onClick={onLanguageToggleClick}
             className={styles.languageToggleText}
-            initial={{ opacity: 0, y: '-50px' }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: '50px' }}
-            key={key}
+            ref={titleLangRef}
           >
             {targetLangStr}
-          </motion.h1>
+          </h1>
         </AnimatePresence>
       </HoverRadialFill>
       <h1>

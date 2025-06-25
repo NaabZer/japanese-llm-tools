@@ -5,17 +5,33 @@ import ResultDisplay from './components/ResultDisplay';
 import ThemeToggle from './components/ThemeToggle';
 import LanguageSelector from './components/LanguageSelector';
 import AppTitle from './components/AppTitle';
+import { AnimatePresence } from 'framer-motion';
 import { LanguageProvider, useLanguage } from './context/LanguageContext';
 import './App.scss';
 
 function AppContent() {
   const { targetLanguage } = useLanguage();
   const [showLanguageSelector, setShowLanguageSelector] = useState(false);
+  const [isLanguageSelectorShowing, setIsLanguageSelectorShowing] = useState(false);
 
   const { sentenceData, isLoading, error, searchSentence, clearResults } = useExampleSentenceSearch();
 
+
   const handleSearch = (word: string) => {
     searchSentence(word, targetLanguage);
+  };
+
+  const [clickAbsoluteOrigin, setClickAbsoluteOrigin] = useState<{ x: number; y: number, w: number, h:number } | null>(null);
+
+  const handleLanguageToggleClick = (compX: number, compY: number, compW: number, compH: number) => {
+    setClickAbsoluteOrigin({ x: compX, y: compY, w: compW, h: compH }); // Save absolute click position
+    setShowLanguageSelector(true); // Open the modal
+    setIsLanguageSelectorShowing(true);
+  };
+
+  const handleCloseLanguageSelector = () => {
+    setShowLanguageSelector(false);
+    setClickAbsoluteOrigin(null); // Clear origin on close
   };
 
   const placeholderText = targetLanguage === "japanese"? 'Enter a Japanese word (e.g., こんにちは)' : 'Enter a Swedish word (e.g., Hej)';
@@ -23,7 +39,10 @@ function AppContent() {
   return (
     <div className="App">
       {/* Make the "Japanese" word clickable */}
-      <AppTitle onLanguageToggleClick={() => setShowLanguageSelector(true)} />
+      <AppTitle
+        onLanguageToggleClick={handleLanguageToggleClick} // Pass the new handler
+        isLanguageSelectorOpen={isLanguageSelectorShowing} // Pass modal open state
+      />
       <ThemeToggle /> {/* Place the toggle here */}
 
 
@@ -43,12 +62,16 @@ function AppContent() {
           error={error}
         />
 
-      {showLanguageSelector && (
-        <LanguageSelector 
-          onClose={() => setShowLanguageSelector(false)} 
-          onClick={() => clearResults()}
-        />
-      )}
+      <AnimatePresence>
+        {showLanguageSelector && (
+          <LanguageSelector 
+            onClose={handleCloseLanguageSelector} 
+            onSelect={() => clearResults()}
+            onCompletelyClosed={() => setIsLanguageSelectorShowing(false)}
+            absoluteOrigin={clickAbsoluteOrigin} 
+          />
+        )}
+      </AnimatePresence>
       </div>
     </div>
   );

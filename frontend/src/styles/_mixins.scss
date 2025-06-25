@@ -58,6 +58,8 @@
     // This is a powerful way to bridge SASS and runtime CSS
     --color-primary: #{map-get($current-theme, primary)};
     --color-primary-hover: #{map-get($current-theme, primary-hover)};
+    --color-on-primary: #{map-get($current-theme, on-primary)};
+    --color-on-primary-hover: #{map-get($current-theme, on-primary-hover)};
     --color-secondary: #{map-get($current-theme, secondary)};
     --color-secondary-hover: #{map-get($current-theme, secondary-hover)};
     --color-success: #{map-get($current-theme, success)};

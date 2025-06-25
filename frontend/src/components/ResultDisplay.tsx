@@ -55,7 +55,6 @@ function ResultDisplay(props: ResultDisplayProps) { // Pass all props to the com
       // Access the DOM element via .current and get its offsetHeight
       const measuredHeight = myElementRef.current.offsetHeight;
       setHeight(measuredHeight);
-      console.log('Measured height:', measuredHeight, 'px');
     }
   };
 

@@ -17,30 +17,16 @@
   background-repeat: no-repeat;
   background-position: center center;
 
-  transition: color 0.4s ease-in, background-color 0.4s ease-in; // Ensure this line is present
+  transition: color 0.4s ease-in, background-color 0.4s ease-in, --fill-color 0.4s ease-in;
 
-  // --- REMOVE THIS BLOCK ---
-  // > * {
-  //   position: relative;
-  //   z-index: 1;
-  // }
-  // --- END REMOVAL ---
 }
 
 .contentDefault,
 .contentFilled {
-  // --- CRITICAL CHANGE: Remove position: absolute from .contentDefault ---
-  // .contentDefault will now be in normal flow and dictate the container's size.
-  // .contentFilled will remain absolutely positioned over it.
-  // position: absolute; // REMOVE THIS FROM .contentDefault
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  // Ensure padding is applied to the container, not these layers,
-  // or apply it consistently if needed.
-  // padding: inherit; // This might cause issues if parent has no padding.
-  // Better to apply padding directly to .radialFillContainer or its children.
 }
 
 .contentDefault {
@@ -76,12 +62,5 @@
 .contentDefault *,
 .contentFilled * {
   color: inherit;
-  transition: color 0.3s ease;
-}
-
-// --- IMPORTANT: Apply padding to the .radialFillContainer itself ---
-// This ensures the container has space and the content is not squished.
-.radialFillContainer {
-  //padding: $spacing-md; // Example padding, adjust as needed
-  // ... other styles ...
+  transition: color 0.4s ease-in;
 }

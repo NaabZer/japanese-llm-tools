@@ -22,6 +22,7 @@
 .formInput {
   flex-grow: 1;
   &::placeholder{
+    transition: color 0.4s ease-in;
     color: var(--color-secondary);
   }
 }

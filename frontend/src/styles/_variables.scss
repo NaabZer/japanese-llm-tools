@@ -5,6 +5,8 @@ $theme-colors: (
   light: (
     primary: #4660f1,
     primary-hover: color.adjust(#4660f1, $lightness: -10%),
+    on-primary: #fff,
+    on-primary-hover: color.adjust(#fff, $lightness: -20%),
     secondary: #6c757d,
     secondary-hover: color.adjust(#6c757d, $lightness: -10%), 
     success: #28a745,
@@ -20,6 +22,8 @@ $theme-colors: (
   dark: (
     primary: #4660f1, 
     primary-hover: color.adjust(#4660f1, $lightness: -10%),
+    on-primary: #fff,
+    on-primary-hover: color.adjust(#fff, $lightness: -20%),
     secondary: #adb5bd, // Lighter gray
     secondary-hover: color.adjust(#adb5bd, $lightness: -10%),
     success: #2ecc71,

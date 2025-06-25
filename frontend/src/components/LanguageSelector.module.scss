@@ -7,28 +7,46 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); // Semi-transparent black overlay
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 2000; // Ensure it's above other content
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2000;
+  transition: none;
 }
 
 .popup {
-  background-color: var(--color-background);
+  background-color: var(--color-primary);
   color: var(--color-text);
   padding: $spacing-lg;
   border-radius: $border-radius;
   box-shadow: $box-shadow-md;
-  position: relative;
-  min-width: 300px;
-  max-width: 90%;
+  position: fixed; // Use fixed positioning relative to viewport
+  width: 100vw;
+  height: 100vh;
+
+  overflow: hidden;
   text-align: center;
+
+  h1{
+    color: var(--color-on-primary);
+  }
+
+  h2{
+    color: var(--color-on-primary);
+    transition: color 0.1s ease-in, background-color 0.1s ease-in; // Ensure this line is present
+
+    &:hover {
+      color: var(--color-on-primary-hover);
+    }
+  }
 }
 
-.popup h3 {
-  margin-bottom: $spacing-md;
-  color: var(--color-dark);
+.popupContent {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  margin-top: 10%;
+  padding: 64px;
 }
 
 .languageList {
@@ -39,19 +57,12 @@
 }
 
 .languageButton {
-  @include button-style(var(--color-secondary), var(--color-background)); // Use secondary color for buttons
-  width: 100%;
-  padding: $spacing-sm;
-  font-size: $font-size-base;
+  cursor: pointer;
 
-  &:hover {
-    background-color: var(--color-secondary-hover);
-  }
 
   &.active {
-    background-color: var(--color-primary); // Active button uses primary color
-    &:hover {
-      background-color: var(--color-primary-hover);
+    h1, h2 { 
+      text-decoration: underline;
     }
   }
 }
