@@ -17,7 +17,7 @@ const availableLanguages: { id: Language; name: string }[] = [
   { id: 'swedish', name: 'Swedish' },
 ];
 
-function LanguageSelector({ onClose, onSelect, onCompletelyClosed, absoluteOrigin }: LanguageSelectorProps) {
+function LanguageSelectorMobile({ onClose, onSelect, onCompletelyClosed, absoluteOrigin }: LanguageSelectorProps) {
   const { targetLanguage, setTargetLanguage } = useLanguage();
 
   const popupRef = useRef<HTMLDivElement>(null); // Ref to the popup div
@@ -37,30 +37,25 @@ function LanguageSelector({ onClose, onSelect, onCompletelyClosed, absoluteOrigi
       onCompletelyClosed();
     }
   }
-  const rTop = absoluteOrigin.y; 
-  const rRight = absoluteOrigin.x + absoluteOrigin.w; 
-  const rBot = absoluteOrigin.y + absoluteOrigin.h; 
-  const rLeft = absoluteOrigin.x; 
 
-// Define animation variants for the popup
   const popupVariants = {
     hidden: {
-      clipPath: `rect(${rTop}px ${rRight}px ${rBot}px ${rLeft}px round 16px)`,
+      clipPath: "circle(0 at 50% -10%)",
     },
     visible: {
-      clipPath: 'rect(0px 100% 100% 0px)',
+      clipPath: "circle(140% at 50% -10%)",
       transition: {
         ease: [.23,1.16,.58,.47],
-        duration: 0.4,
+        duration: 0.6,
         staggerChildren: 0.05,
         when: 'beforeChildren'
       },
     },
     exit: {
-      clipPath: `rect(${rTop}px ${rRight}px ${rBot}px ${rLeft}px round 16px)`,
+      clipPath: "circle(0 at 50% -10%)",
       transition: {
         ease: [0.42, 0.53, 0.77, -0.16],
-        duration: 0.4,
+        duration: 0.5,
         staggerChildren: 0.05,
         staggerDirection: -1,
         delay: 0.1
@@ -147,4 +142,4 @@ function LanguageSelector({ onClose, onSelect, onCompletelyClosed, absoluteOrigi
   );
 }
 
-export default LanguageSelector;
+export default LanguageSelectorMobile;

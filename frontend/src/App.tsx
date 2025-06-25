@@ -4,9 +4,11 @@ import SearchForm from './components/SearchForm';
 import ResultDisplay from './components/ResultDisplay';
 import ThemeToggle from './components/ThemeToggle';
 import LanguageSelector from './components/LanguageSelector';
+import LanguageSelectorMobile from './components/LanguageSelectorMobile';
 import AppTitle from './components/AppTitle';
 import { AnimatePresence } from 'framer-motion';
 import { LanguageProvider, useLanguage } from './context/LanguageContext';
+import { useMediaQuery } from 'usehooks-ts'
 import './App.scss';
 
 function AppContent() {
@@ -36,12 +38,14 @@ function AppContent() {
 
   const placeholderText = targetLanguage === "japanese"? 'Enter a Japanese word (e.g., こんにちは)' : 'Enter a Swedish word (e.g., Hej)';
 
+  const isDesktop = useMediaQuery('(min-width: 576px)')
+
   return (
     <div className="App">
       {/* Make the "Japanese" word clickable */}
       <AppTitle
-        onLanguageToggleClick={handleLanguageToggleClick} // Pass the new handler
-        isLanguageSelectorOpen={isLanguageSelectorShowing} // Pass modal open state
+        onLanguageToggleClick={handleLanguageToggleClick}
+        isLanguageSelectorOpen={isDesktop ? isLanguageSelectorShowing : showLanguageSelector}
       />
       <ThemeToggle /> {/* Place the toggle here */}
 
@@ -63,12 +67,19 @@ function AppContent() {
         />
 
       <AnimatePresence>
-        {showLanguageSelector && (
+        {isDesktop && showLanguageSelector && (
           <LanguageSelector 
             onClose={handleCloseLanguageSelector} 
             onSelect={() => clearResults()}
             onCompletelyClosed={() => setIsLanguageSelectorShowing(false)}
             absoluteOrigin={clickAbsoluteOrigin} 
+          />
+        )}
+        {!isDesktop && showLanguageSelector && (
+          <LanguageSelectorMobile 
+            onClose={handleCloseLanguageSelector} 
+            onSelect={() => clearResults()}
+            onCompletelyClosed={() => setIsLanguageSelectorShowing(false)}
           />
         )}
       </AnimatePresence>

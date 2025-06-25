@@ -15,6 +15,7 @@ interface LanguageSelectorProps {
 const availableLanguages: { id: Language; name: string }[] = [
   { id: 'japanese', name: 'Japanese' },
   { id: 'swedish', name: 'Swedish' },
+  // Add more languages here as needed
 ];
 
 function LanguageSelector({ onClose, onSelect, onCompletelyClosed, absoluteOrigin }: LanguageSelectorProps) {
@@ -37,6 +38,7 @@ function LanguageSelector({ onClose, onSelect, onCompletelyClosed, absoluteOrigi
       onCompletelyClosed();
     }
   }
+
   const rTop = absoluteOrigin.y; 
   const rRight = absoluteOrigin.x + absoluteOrigin.w; 
   const rBot = absoluteOrigin.y + absoluteOrigin.h; 

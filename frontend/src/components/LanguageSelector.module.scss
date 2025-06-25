@@ -76,11 +76,11 @@
   border: none;
   font-size: $font-size-lg * 2;
   cursor: pointer;
-  color: var(--color-text);
+  color: var(--color-on-primary);
   padding: $spacing-xs;
   transition: color 0.1s ease-in, background-color 0.1s ease-in; // Ensure this line is present
 
   &:hover {
-    color: var(--color-danger);
+    color: var(--color-on-primary-hover);
   }
 }
