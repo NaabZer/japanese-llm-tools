@@ -4,7 +4,6 @@ import SearchForm from './components/SearchForm';
 import ResultDisplay from './components/ResultDisplay';
 import ThemeToggle from './components/ThemeToggle';
 import LanguageSelector from './components/LanguageSelector';
-import LanguageSelectorMobile from './components/LanguageSelectorMobile';
 import AppTitle from './components/AppTitle';
 import { AnimatePresence } from 'framer-motion';
 import { LanguageProvider, useLanguage } from './context/LanguageContext';
@@ -67,19 +66,12 @@ function AppContent() {
         />
 
       <AnimatePresence>
-        {isDesktop && showLanguageSelector && (
+        {showLanguageSelector && (
           <LanguageSelector 
             onClose={handleCloseLanguageSelector} 
             onSelect={() => clearResults()}
             onCompletelyClosed={() => setIsLanguageSelectorShowing(false)}
             absoluteOrigin={clickAbsoluteOrigin} 
-          />
-        )}
-        {!isDesktop && showLanguageSelector && (
-          <LanguageSelectorMobile 
-            onClose={handleCloseLanguageSelector} 
-            onSelect={() => clearResults()}
-            onCompletelyClosed={() => setIsLanguageSelectorShowing(false)}
           />
         )}
       </AnimatePresence>

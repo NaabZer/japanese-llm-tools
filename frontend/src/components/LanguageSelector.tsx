@@ -1,9 +1,10 @@
 // src/components/LanguageSelector.tsx
 import React, {useRef} from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { motion, cubicBezier } from 'motion/react';
+import { motion } from 'motion/react';
 import type { Language } from '../types';
 import styles from './LanguageSelector.module.scss'; // Create this SCSS module
+import { useMediaQuery } from 'usehooks-ts'
 
 interface LanguageSelectorProps {
   onClose: () => void;
@@ -37,37 +38,67 @@ function LanguageSelector({ onClose, onSelect, onCompletelyClosed, absoluteOrigi
       onCompletelyClosed();
     }
   }
-  const rTop = absoluteOrigin.y; 
-  const rRight = absoluteOrigin.x + absoluteOrigin.w; 
-  const rBot = absoluteOrigin.y + absoluteOrigin.h; 
-  const rLeft = absoluteOrigin.x; 
+  const isDesktop = useMediaQuery('(min-width: 576px)')
 
-// Define animation variants for the popup
-  const popupVariants = {
-    hidden: {
-      clipPath: `rect(${rTop}px ${rRight}px ${rBot}px ${rLeft}px round 16px)`,
-    },
-    visible: {
-      clipPath: 'rect(0px 100% 100% 0px)',
-      transition: {
-        ease: [.23,1.16,.58,.47],
-        duration: 0.4,
-        staggerChildren: 0.05,
-        when: 'beforeChildren'
-      },
-    },
-    exit: {
-      clipPath: `rect(${rTop}px ${rRight}px ${rBot}px ${rLeft}px round 16px)`,
-      transition: {
-        ease: [0.42, 0.53, 0.77, -0.16],
-        duration: 0.4,
-        staggerChildren: 0.05,
-        staggerDirection: -1,
-        delay: 0.1
-      },
-    },
-  };
+  let popupVariants;
+  if(isDesktop) {
+    const rTop = absoluteOrigin.y; 
+    const rRight = absoluteOrigin.x + absoluteOrigin.w; 
+    const rBot = absoluteOrigin.y + absoluteOrigin.h; 
+    const rLeft = absoluteOrigin.x; 
 
+
+  // Define animation variants for the popup
+    popupVariants = {
+      hidden: {
+        clipPath: `rect(${rTop}px ${rRight}px ${rBot}px ${rLeft}px round 16px)`,
+      },
+      visible: {
+        clipPath: 'rect(0px 100% 100% 0px)',
+        transition: {
+          ease: [.23,1.16,.58,.47],
+          duration: 0.4,
+          staggerChildren: 0.05,
+          when: 'beforeChildren'
+        },
+      },
+      exit: {
+        clipPath: `rect(${rTop}px ${rRight}px ${rBot}px ${rLeft}px round 16px)`,
+        transition: {
+          ease: [0.42, 0.53, 0.77, -0.16],
+          duration: 0.4,
+          staggerChildren: 0.05,
+          staggerDirection: -1,
+          delay: 0.1
+        },
+      },
+    };
+  } else {
+    popupVariants = {
+      hidden: {
+        clipPath: "circle(0 at 50% -10%)",
+      },
+      visible: {
+        clipPath: "circle(140% at 50% -10%)",
+        transition: {
+          ease: [.23,1.16,.58,.47],
+          duration: 0.6,
+          staggerChildren: 0.05,
+          when: 'beforeChildren'
+        },
+      },
+      exit: {
+        clipPath: "circle(0 at 50% -10%)",
+        transition: {
+          ease: [0.42, 0.53, 0.77, -0.16],
+          duration: 0.5,
+          staggerChildren: 0.05,
+          staggerDirection: -1,
+          delay: 0.1
+        },
+      },
+    };
+  }
   const popupVariantsInner = {
     hidden: {
       y: -50,
