@@ -1,18 +1,18 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { useExampleSentenceSearch } from '../hooks/useExampleSentenceSearch';
-import SearchForm from '../components/SearchForm';
-import ResultDisplay from '../components/ResultDisplay';
-import ThemeToggle from '../components/ThemeToggle';
-import LanguageSelector from '../components/LanguageSelector';
-import AppTitle from '../components/AppTitle';
-import { LanguageProvider, useLanguage } from '../context/LanguageContext';
-import '../App.scss';
+import { useExampleSentenceSearch } from 'hooks/useExampleSentenceSearch';
+import SearchForm from 'components/SearchForm';
+import ResultDisplay from 'components/ResultDisplay';
+import LanguageSelector from 'components/LanguageSelector';
+import AppTitle from 'components/AppTitle';
+import { LanguageProvider, useLanguage } from 'context/LanguageContext';
+import 'src/App.scss';
 
-export const Route = createFileRoute('/sentences')({
+export const Route = createFileRoute('/_input_type/sentences')({
   component: Sentences,
 })
 
 function Sentences() {
+  const { targetLanguage } = useLanguage();
 
   const { sentenceData, isLoading, error, searchSentence, clearResults } = useExampleSentenceSearch();
 
