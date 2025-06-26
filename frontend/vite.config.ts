@@ -11,4 +11,16 @@ export default defineConfig({
         }),
         react()
     ],
+    resolve: {
+        alias: {
+            src: "/src",
+            components: "/src/components",
+            assets: "/src/assets",
+            api: "/src/api",
+            context: "/src/context",
+            styles: "/src/styles",
+            types: "/src/types",
+            hooks: "/src/hooks",
+        },
+    },
 })
