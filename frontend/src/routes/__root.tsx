@@ -1,14 +1,17 @@
 import React, {useState} from 'react';
-import { useExampleSentenceSearch } from './hooks/useExampleSentenceSearch';
-import SearchForm from './components/SearchForm';
-import ResultDisplay from './components/ResultDisplay';
-import ThemeToggle from './components/ThemeToggle';
-import LanguageSelector from './components/LanguageSelector';
-import AppTitle from './components/AppTitle';
-import { AnimatePresence } from 'framer-motion';
-import { LanguageProvider, useLanguage } from './context/LanguageContext';
+import { AnimatePresence } from 'motion/react';
 import { useMediaQuery } from 'usehooks-ts'
-import './App.scss';
+import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
+import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
+
+import { useExampleSentenceSearch } from '../hooks/useExampleSentenceSearch';
+import SearchForm from '../components/SearchForm';
+import ResultDisplay from '../components/ResultDisplay';
+import ThemeToggle from '../components/ThemeToggle';
+import LanguageSelector from '../components/LanguageSelector';
+import AppTitle from '../components/AppTitle';
+import { LanguageProvider, useLanguage } from '../context/LanguageContext';
+import '../App.scss';
 
 function AppContent() {
   const { targetLanguage } = useLanguage();
@@ -41,7 +44,7 @@ function AppContent() {
 
   return (
     <div className="App">
-      {/* Make the "Japanese" word clickable */}
+      <Link to='/'> Sentences </Link>
       <AppTitle
         onLanguageToggleClick={handleLanguageToggleClick}
         isLanguageSelectorOpen={isDesktop ? isLanguageSelectorShowing : showLanguageSelector}
@@ -50,6 +53,7 @@ function AppContent() {
 
 
       <div className='content-gutter'>
+        <Outlet />
         <SearchForm 
           onSearch={handleSearch} 
           isLoading={isLoading} 
@@ -82,10 +86,15 @@ function AppContent() {
 // Wrapper component to provide the LanguageContext
 function App() {
   return (
-    <LanguageProvider>
-      <AppContent />
-    </LanguageProvider>
+    <>
+      <LanguageProvider>
+        <AppContent />
+      </LanguageProvider>
+      <TanStackRouterDevtools />
+    </>
   );
 }
 
-export default App;
+export const Route = createRootRoute({
+  component: App
+})
