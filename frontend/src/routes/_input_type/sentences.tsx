@@ -2,10 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { useExampleSentenceSearch } from 'hooks/useExampleSentenceSearch';
 import SearchForm from 'components/SearchForm';
 import ResultDisplay from 'components/ResultDisplay';
-import LanguageSelector from 'components/LanguageSelector';
-import AppTitle from 'components/AppTitle';
-import { LanguageProvider, useLanguage } from 'context/LanguageContext';
-import 'src/App.scss';
+import { useLanguage } from 'context/LanguageContext';
 
 export const Route = createFileRoute('/_input_type/sentences')({
   component: Sentences,
@@ -14,7 +11,10 @@ export const Route = createFileRoute('/_input_type/sentences')({
 function Sentences() {
   const { targetLanguage } = useLanguage();
 
-  const { sentenceData, isLoading, error, searchSentence, clearResults } = useExampleSentenceSearch();
+  const { sentenceData, isLoading, error, searchSentence } = useExampleSentenceSearch();
+
+  const placeholderText = targetLanguage === "japanese"? 'Enter a Japanese word (e.g., こんにちは)' : 'Enter a Swedish word (e.g., Hej)';
+
 
   const handleSearch = (word: string) => {
     searchSentence(word, targetLanguage);
@@ -35,17 +35,6 @@ function Sentences() {
         isLoading={isLoading}
         error={error}
       />
-
-      <AnimatePresence>
-        {showLanguageSelector && (
-          <LanguageSelector 
-            onClose={handleCloseLanguageSelector} 
-            onSelect={() => clearResults()}
-            onCompletelyClosed={() => setIsLanguageSelectorShowing(false)}
-            absoluteOrigin={clickAbsoluteOrigin} 
-          />
-        )}
-      </AnimatePresence>
     </>
   );
 }
