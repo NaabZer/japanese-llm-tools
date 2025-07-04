@@ -1,0 +1,18 @@
+@use '../styles/theme' as *;
+
+.navLink {
+  padding: 0.5rem 1rem;
+  border-radius: $border-radius;
+  font-size: $font-size-lg;
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--color-text);
+  transition: color 0.4s ease-in;
+
+  &:hover {
+    text-decoration: none;
+    transition: color 0.2s;
+    color: var(--color-primary);
+  }
+}
+

@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Link } from '@tanstack/react-router';
 import { useMediaQuery } from 'usehooks-ts';
+import { motion } from 'motion/react';
+import { NavLink } from './NavLink';
 import ThemeToggle from './ThemeToggle';
 import styles from './NavBar.module.scss';
 
@@ -12,16 +13,33 @@ export const NavBar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const navLinks = [
+    { to: '/sentences', label: 'Sentences' },
+    { to: '/concepts', label: 'Concepts' },
+  ];
+
   return (
     <>
       <nav className={styles.navBar}>
         <div className={styles.navLinks}>
-          <Link to="/sentences" className={styles.navLink}>
-            Sentences
-          </Link>
-          <Link to="/concepts" className={styles.navLink}>
-            Concepts
-          </Link>
+          {navLinks.map((link) => (
+            <NavLink
+              key={link.to}
+              to={link.to}
+            >
+              {({ isActive }) => (
+                <>
+                  {link.label}
+                  {isActive && (
+                    <motion.div
+                      layoutId="underline"
+                      className={styles.underline}
+                    />
+                  )}
+                </>
+              )}
+            </NavLink>
+          ))}
         </div>
         {isDesktop && <ThemeToggle />}
         <button className={styles.hamburger} onClick={toggleMenu}>
@@ -29,12 +47,15 @@ export const NavBar = () => {
         </button>
       </nav>
       <div className={`${styles.mobileMenu} ${isMenuOpen ? styles.isOpen : ''}`}>
-        <Link to="/sentences" className={styles.mobileNavLink} onClick={toggleMenu}>
-          Sentences
-        </Link>
-        <Link to="/concepts" className={styles.mobileNavLink} onClick={toggleMenu}>
-          Concepts
-        </Link>
+        {navLinks.map((link) => (
+          <NavLink
+            key={link.to}
+            to={link.to}
+            onClick={toggleMenu}
+          >
+            {link.label}
+          </NavLink>
+        ))}
         {!isDesktop && (
           <div className={styles.mobileThemeToggle}>
             <ThemeToggle />

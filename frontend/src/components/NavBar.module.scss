@@ -1,8 +1,11 @@
 @use '../styles/theme' as theme;
 
 .navBar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 1rem;
   background-color: var(--background-color);
@@ -14,20 +17,9 @@
 
   @include theme.breakpoint(md) {
     display: flex;
+    justify-content: center;
+    flex-grow: 1;
     gap: 1rem;
-  }
-}
-
-.navLink {
-  padding: 0.5rem 1rem;
-  border-radius: theme.$border-radius;
-  text-decoration: none;
-  color: var(--text-color);
-  transition: background-color 0.3s;
-
-  &:hover {
-    background-color: var(--accent-color);
-    color: var(--background-color);
   }
 }
 
@@ -71,21 +63,13 @@
   }
 }
 
-.mobileNavLink {
-  padding: 0.5rem 1rem;
-  border-radius: theme.$border-radius;
-  text-decoration: none;
-  color: var(--text-color);
-  transition: background-color 0.3s;
-
-  &:hover {
-    background-color: var(--accent-color);
-    color: var(--background-color);
-  }
-}
-
 .mobileThemeToggle {
   margin-top: auto;
   padding-top: 1rem;
   border-top: 1px solid var(--border-color);
+}
+
+.underline {
+  height: 2px;
+  background: var(--color-primary);
 }

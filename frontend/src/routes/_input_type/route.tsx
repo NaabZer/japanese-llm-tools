@@ -8,6 +8,7 @@ import { z } from 'zod'
 import { useExampleSentenceSearch } from 'hooks/useExampleSentenceSearch';
 import LanguageSelector from 'components/LanguageSelector';
 import AppTitle from 'components/AppTitle';
+import styles from './route.module.scss';
 
 const inputSearchSchema = z.object({
   ShowLangSelect: fallback(z.boolean(), false).default(false)
@@ -70,7 +71,7 @@ function InputTypeComponent() {
         )}
       </AnimatePresence>
 
-      <div className='content-gutter'>
+      <div className={styles.contentGutter}>
         <Outlet />
       </div>
     </>

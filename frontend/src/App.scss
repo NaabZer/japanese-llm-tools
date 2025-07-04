@@ -9,7 +9,7 @@
     text-align: center;
     @include theme.responsive-property(padding, (
       xs: 0.5rem,
-      sm: 1rem,
+      sm: 15vh,
       lg: 2rem,
       )
     );
@@ -29,22 +29,5 @@
 
   h1 {
     transition: color 0.4s ease-in, background-color 0.4s ease-in;
-  }
-}
-
-.content-gutter{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  @include theme.responsive-property(width, (
-    sm: 100%,
-    md: 80vw,
-    lg: 60vw,
-    xl: 35vw,
-    )
-  );
-  @include theme.breakpoint(xl) { 
-    min-width: 600px;
   }
 }

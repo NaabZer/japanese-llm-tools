@@ -2,13 +2,18 @@
 @use '../styles/theme' as *;
 
 .toggleContainer {
-  position: absolute;
   top: $spacing-md;
   right: $spacing-md;
   display: flex;
   align-items: center;
   gap: $spacing-sm; // Gap between slider and icon
   z-index: 1000;
+
+  @include breakpoint(md) {
+    position: absolute;
+    height: calc(100% - 2rem); // - padding from parent element
+  }
+  
 }
 
 /* The switch - the box around the slider */

@@ -1,0 +1,19 @@
+@use './styles/theme' as theme;
+
+
+.contentGutter{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @include theme.responsive-property(width, (
+    sm: 100%,
+    md: 80vw,
+    lg: 60vw,
+    xl: 35vw,
+    )
+  );
+  @include theme.breakpoint(xl) { 
+    min-width: 600px;
+  }
+}
