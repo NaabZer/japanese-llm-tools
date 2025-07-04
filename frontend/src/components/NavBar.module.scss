@@ -1,0 +1,91 @@
+@use '../styles/theme' as theme;
+
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--background-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.navLinks {
+  display: none;
+
+  @include theme.breakpoint(md) {
+    display: flex;
+    gap: 1rem;
+  }
+}
+
+.navLink {
+  padding: 0.5rem 1rem;
+  border-radius: theme.$border-radius;
+  text-decoration: none;
+  color: var(--text-color);
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: var(--accent-color);
+    color: var(--background-color);
+  }
+}
+
+.hamburger {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1001;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text-color);
+  cursor: pointer;
+
+  @include theme.breakpoint(md) {
+    display: none;
+  }
+}
+
+.mobileMenu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 250px;
+  height: 100%;
+  background-color: var(--background-color);
+  border-left: 1px solid var(--border-color);
+  padding: 4rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  z-index: 1000;
+  transition: right 0.3s ease-in-out;
+
+  &.isOpen {
+    right: 0;
+  }
+
+  @include theme.breakpoint(md) {
+    display: none;
+  }
+}
+
+.mobileNavLink {
+  padding: 0.5rem 1rem;
+  border-radius: theme.$border-radius;
+  text-decoration: none;
+  color: var(--text-color);
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: var(--accent-color);
+    color: var(--background-color);
+  }
+}
+
+.mobileThemeToggle {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
