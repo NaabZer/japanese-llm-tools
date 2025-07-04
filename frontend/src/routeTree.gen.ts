@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as Input_typeRouteRouteImport } from './routes/_input_type/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as Input_typeSentencesRouteImport } from './routes/_input_type/sentences'
+import { Route as Input_typeConceptsRouteImport } from './routes/_input_type/concepts'
 
 const Input_typeRouteRoute = Input_typeRouteRouteImport.update({
   id: '/_input_type',
@@ -27,27 +28,40 @@ const Input_typeSentencesRoute = Input_typeSentencesRouteImport.update({
   path: '/sentences',
   getParentRoute: () => Input_typeRouteRoute,
 } as any)
+const Input_typeConceptsRoute = Input_typeConceptsRouteImport.update({
+  id: '/concepts',
+  path: '/concepts',
+  getParentRoute: () => Input_typeRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/concepts': typeof Input_typeConceptsRoute
   '/sentences': typeof Input_typeSentencesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/concepts': typeof Input_typeConceptsRoute
   '/sentences': typeof Input_typeSentencesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_input_type': typeof Input_typeRouteRouteWithChildren
+  '/_input_type/concepts': typeof Input_typeConceptsRoute
   '/_input_type/sentences': typeof Input_typeSentencesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/sentences'
+  fullPaths: '/' | '/concepts' | '/sentences'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/sentences'
-  id: '__root__' | '/' | '/_input_type' | '/_input_type/sentences'
+  to: '/' | '/concepts' | '/sentences'
+  id:
+    | '__root__'
+    | '/'
+    | '/_input_type'
+    | '/_input_type/concepts'
+    | '/_input_type/sentences'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -78,14 +92,23 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Input_typeSentencesRouteImport
       parentRoute: typeof Input_typeRouteRoute
     }
+    '/_input_type/concepts': {
+      id: '/_input_type/concepts'
+      path: '/concepts'
+      fullPath: '/concepts'
+      preLoaderRoute: typeof Input_typeConceptsRouteImport
+      parentRoute: typeof Input_typeRouteRoute
+    }
   }
 }
 
 interface Input_typeRouteRouteChildren {
+  Input_typeConceptsRoute: typeof Input_typeConceptsRoute
   Input_typeSentencesRoute: typeof Input_typeSentencesRoute
 }
 
 const Input_typeRouteRouteChildren: Input_typeRouteRouteChildren = {
+  Input_typeConceptsRoute: Input_typeConceptsRoute,
   Input_typeSentencesRoute: Input_typeSentencesRoute,
 }
 

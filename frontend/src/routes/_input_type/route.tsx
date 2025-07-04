@@ -72,7 +72,9 @@ function InputTypeComponent() {
       </AnimatePresence>
 
       <div className={styles.contentGutter}>
-        <Outlet />
+        <AnimatePresence>
+          <Outlet />
+        </AnimatePresence>
       </div>
     </>
   );

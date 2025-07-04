@@ -3,16 +3,27 @@
 .navLink {
   padding: 0.5rem 1rem;
   border-radius: $border-radius;
-  font-size: $font-size-lg;
   text-decoration: none;
   font-weight: bold;
-  color: var(--color-text);
-  transition: color 0.4s ease-in;
-
+  font-size: $font-size-h2;
+  color: var(--color-on-primary);
   &:hover {
     text-decoration: none;
-    transition: color 0.2s;
-    color: var(--color-primary);
+  }
+
+  &.active{
+    text-decoration: underline;
+  }
+
+  @include breakpoint(md) {
+    font-size: $font-size-lg;
+    color: var(--color-text);
+    transition: color 0.4s ease-in;
+    &:hover {
+      text-decoration: none;
+      transition: color 0.2s;
+      color: var(--color-primary);
+    }
   }
 }
 
